@@ -1,9 +1,13 @@
 #This is a Dockerfile for building a Docker image for a web application.
-FROM node:14
-WORKDIR /code
-WORKDIR /app
-COPY package*.json ./code/package*.json
-RUN npm install
-COPY . /code
-EXPOSE 3000
-CMD ["npm", "start"]
+FROM ubuntu:latest
+
+LABEL version="0.0.1"
+LABEL maintainer="Your Name <my_train_cloud@protonmail.com" 
+
+RUN apt-get update && apt-get upgrade -y
+
+RUN apt-get install nginx -y 
+
+EXPOSE 90
+
+CMD ["nginx", "-g", "daemon off;"]
